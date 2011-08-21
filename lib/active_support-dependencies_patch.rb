@@ -1,4 +1,5 @@
 require "active_support-dependencies_patch/version"
+require "active_support/dependencies"
 
 module ActiveSupport::Dependencies
   
@@ -19,21 +20,22 @@ module ActiveSupport::Dependencies
     end
   end
   
-  # take the existing require_or_load method and create a new name for it
+  # alias new name 'require_or_load_without_multiple' to existing method 'require_or_load'
   alias_method :require_or_load_without_multiple, :require_or_load
   
   # redefine the method
   def require_or_load(file_name, const_path = nil)
     if file_name.starts_with?( Rails.root.to_s + "/app" )
       relative_name = file_name.gsub( Rails.root.to_s, '' )
-      puts "Search for #{relative_name}"
+      puts "AS:D Require #{relative_name}"
       engine_paths.each do |path|
         engine_file = File.join( path, relative_name )
+        puts "AS:D Searching for #{engine_file}"
         
         # call the original method
         if File.file?( engine_file ) then
           require_or_load_without_multiple( engine_file, const_path )
-          puts "Found #{engine_file}"
+          puts "AS:D Found #{engine_file}"
         end
       end
     end
