@@ -1,4 +1,4 @@
-require "active_support/dependencies_patch/version"
+require "active_support/dependencies/version"
 
 puts "ASDP gem load"
 
