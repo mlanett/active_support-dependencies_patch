@@ -1,0 +1,2 @@
+Allow gems to provide models which are then extended by the app
+Based on code at https://gist.github.com/910368#file_as_dependencies_patch.rb
