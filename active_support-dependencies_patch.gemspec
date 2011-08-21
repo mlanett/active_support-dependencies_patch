@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Mark Lanett"]
   s.email       = ["mark.lanett@gmail.com"]
   s.homepage    = ""
-  s.summary     = %q{nada}
+  s.summary     = %q{Allow gems to provide models which are then extended by the app}
 
   s.rubyforge_project = "active_support-dependencies_patch"
 
