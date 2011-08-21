@@ -1,4 +1,4 @@
-require "active_support/dependencies/version"
+require "active_support-dependencies_patch/version"
 
 module ActiveSupport::Dependencies
   

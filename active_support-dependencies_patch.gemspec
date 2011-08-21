@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 x = File.expand_path( File.join( File.dirname(__FILE__), "lib" ) )
 $:.push x unless $:.member?(x)
-require "active_support/dependencies/version"
+require "active_support-dependencies_patch/version"
 
 Gem::Specification.new do |s|
   s.name        = "active_support-dependencies_patch"
