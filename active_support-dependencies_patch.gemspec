@@ -8,8 +8,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Mark Lanett"]
   s.email       = ["mark.lanett@gmail.com"]
   s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.summary     = %q{nada}
 
   s.rubyforge_project = "active_support-dependencies_patch"
 
