@@ -1,4 +1,5 @@
 require "active_support-dependencies_patch/version"
+require "active_support/deprecation" # must require before dependencies
 require "active_support/dependencies"
 
 module ActiveSupport::Dependencies
@@ -27,15 +28,15 @@ module ActiveSupport::Dependencies
   def require_or_load(file_name, const_path = nil)
     if file_name.starts_with?( Rails.root.to_s + "/app" )
       relative_name = file_name.gsub( Rails.root.to_s, '' )
-      puts "AS:D Require #{relative_name}"
+      puts "AS:DP Require #{relative_name}"
       engine_paths.each do |path|
         engine_file = File.join( path, relative_name )
-        puts "AS:D Searching for #{engine_file}"
+        puts "AS:DP Searching for #{engine_file}"
         
         # call the original method
         if File.file?( engine_file ) then
           require_or_load_without_multiple( engine_file, const_path )
-          puts "AS:D Found #{engine_file}"
+          puts "AS:DP Found #{engine_file}"
         end
       end
     end
