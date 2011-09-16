@@ -45,3 +45,5 @@ module ActiveSupport::Dependencies
     require_or_load_without_multiple( file_name, const_path )
   end
 end
+
+puts "AD:SP loaded"
