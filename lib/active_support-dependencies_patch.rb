@@ -26,7 +26,7 @@ module ActiveSupport::Dependencies
   
   # redefine the method
   def require_or_load(file_name, const_path = nil)
-    if file_name.starts_with?( Rails.root.to_s + "/app" )
+    if file_name.starts_with?( "#{Rails.root}/app" ) || file_name.starts_with?( "#{Rails.root}/lib" )
       relative_name = file_name.gsub( Rails.root.to_s, '' )
       #puts "AS:DP Require #{relative_name}"
       engine_paths.each do |path|
