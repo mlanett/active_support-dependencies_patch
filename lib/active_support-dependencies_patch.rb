@@ -49,7 +49,7 @@ module ActiveSupport::Dependencies
   def observe_require( file )
     yield
   rescue => x
-    STDERR.puts "AS:DP Failed to required #{file} due to an error #{x.inspect}"
+    # STDERR.puts "AS:DP Failed to required #{file} due to an error #{x.inspect}"
     raise x
   else
     # STDERR.puts "AS:DP Required #{file}"
