@@ -28,21 +28,31 @@ module ActiveSupport::Dependencies
   def require_or_load(file_name, const_path = nil)
     if file_name.starts_with?( "#{Rails.root}/app" ) || file_name.starts_with?( "#{Rails.root}/lib" )
       relative_name = file_name.gsub( Rails.root.to_s, '' )
-      #puts "AS:DP Require #{relative_name}"
       engine_paths.each do |path|
         engine_file = File.join( path, relative_name )
-        #puts "AS:DP Searching for #{engine_file}"
         
         # call the original method
         if File.file?( engine_file ) then
-          require_or_load_without_multiple( engine_file, const_path )
-          #puts "AS:DP Found #{engine_file}"
+          observe_require( "engine file #{engine_file} path #{const_path}" ) {
+            require_or_load_without_multiple( engine_file, const_path )
+          }
         end
       end
     end
     
     # call the original method
-    require_or_load_without_multiple( file_name, const_path )
+    observe_require( "original file #{file_name} path #{const_path}" ) {
+      require_or_load_without_multiple( file_name, const_path )
+    }
+  end
+
+  def observe_require( file )
+    yield
+  rescue => x
+    STDERR.puts "AS:DP Failed to required #{file} due to an error #{x.inspect}"
+    raise x
+  else
+    # STDERR.puts "AS:DP Required #{file}"
   end
 end
 
